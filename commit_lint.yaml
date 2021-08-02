@@ -1,0 +1,22 @@
+# <type>[optional scope]: <description>
+#
+# [optional body]
+#
+# [optional footer(s)] 
+
+lint:
+  type:
+    presence: 'required | omitted | optional'
+    case: lower-case
+    min-length: 0
+    max-length: 10
+    allowed:
+      - chore
+    banned:
+      - hello
+
+  scope:
+  description:
+  body:
+  footer:
+  reference:
