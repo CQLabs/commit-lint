@@ -12,7 +12,7 @@ class CliRunner extends CommandRunner<void> {
   CliRunner()
       : super(
           'commit-lint',
-          '',
+          'Lint your commit messages.',
         ) {
     _commands.forEach(addCommand);
   }

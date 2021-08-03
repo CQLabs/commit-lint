@@ -1,21 +1,15 @@
 import 'package:commit_lint/src/models/raw_config.dart';
-import 'package:commit_lint/src/rules/type/type_config.dart';
-import 'package:commit_lint/src/rules/type/type_rule.dart';
 
 class Config {
-  final TypeConfig typeConfig;
+  final Map<String, Object> lintConfig;
 
   const Config({
-    required this.typeConfig,
+    required this.lintConfig,
   });
 
   factory Config.fromRawConfig(RawConfig rawConfig) {
-    const _lintKey = 'lint';
+    final lintConfig = rawConfig.readMapOfMap(['lint']);
 
-    return Config(
-      typeConfig: TypeConfig.fromConfigMap(
-        rawConfig.readMap([_lintKey, TypeRule.ruleId]),
-      ),
-    );
+    return Config(lintConfig: lintConfig);
   }
 }

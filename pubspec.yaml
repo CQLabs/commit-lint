@@ -1,6 +1,6 @@
 name: commit_lint
 description: Static analysis for commit messages
-version: 0.0.1
+version: 0.1.0
 # homepage: https://www.example.com
 
 environment:
@@ -13,6 +13,7 @@ dependencies:
   yaml: ^3.1.0
   collection: ^1.15.0
   args: ^2.0.0
+  process_run: ^0.12.1
 
 dev_dependencies:
   pedantic: ^1.9.0

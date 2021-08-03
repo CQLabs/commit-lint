@@ -10,4 +10,6 @@ class CommitIssue {
   );
 
   factory CommitIssue.empty(String details) => CommitIssue(details, []);
+
+  bool get isEmpty => issues.isEmpty;
 }

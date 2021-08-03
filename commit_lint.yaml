@@ -5,18 +5,24 @@
 # [optional footer(s)] 
 
 lint:
-  type:
-    presence: 'required | omitted | optional'
-    case: lower-case
-    min-length: 0
-    max-length: 10
+  type-presence:
+    presence: required # required | omitted | optional
+    severity: warning # none | info | warning | error
+  type-case: 
+    case: lower-case # TODO(incendial): add support for different cases
+    severity: error
+  type-min-length: 
+    length: 0
+  type-max-length:
+    length: 2
+  type-enum:
     allowed:
       - chore
     banned:
       - hello
 
-  scope:
-  description:
-  body:
-  footer:
-  reference:
+  # scope:
+  # description:
+  # body:
+  # footer:
+  # reference:
