@@ -1,7 +1,8 @@
 name: commit_lint
 description: Static analysis for commit messages
 version: 0.2.0
-# homepage: https://www.example.com
+homepage: https://pub.dev/packages/commit_lint
+repository: https://github.com/incendial/commit-lint
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -20,4 +21,4 @@ dev_dependencies:
   test: ^1.14.4
 
 executables:
-  commit-lint:
+  commit_lint:
