@@ -6,11 +6,7 @@ import 'package:commit_lint/src/commands/base_command.dart';
 import 'package:commit_lint/src/models/commit_issue.dart';
 import 'package:commit_lint/src/models/config.dart';
 import 'package:commit_lint/src/models/raw_config.dart';
-import 'package:commit_lint/src/rules/type/type_case_rule.dart';
-import 'package:commit_lint/src/rules/type/type_enum_rule.dart';
-import 'package:commit_lint/src/rules/type/type_max_length_rule.dart';
-import 'package:commit_lint/src/rules/type/type_min_length_rule.dart';
-import 'package:commit_lint/src/rules/type/type_presence_rule.dart';
+import 'package:commit_lint/src/rules/rules_factory.dart';
 import 'package:commit_lint/src/utils/git_utils.dart';
 import 'package:conventional_commit/conventional_commit.dart';
 
@@ -73,13 +69,7 @@ class LintCommand extends BaseCommand {
         await RawConfig.rawOptionsFromFilePath(Directory.current.path);
     final configModel = Config.fromRawConfig(rawConfig);
 
-    final rules = [
-      TypeCaseRule(configModel.lintConfig),
-      TypeEnumRule(configModel.lintConfig),
-      TypeMinLengthRule(configModel.lintConfig),
-      TypeMaxLengthRule(configModel.lintConfig),
-      TypePresenceRule(configModel.lintConfig),
-    ];
+    final rules = getRules(configModel.lintConfig);
 
     final commitIssues = commitMessages
         .map((commitMessage) {
@@ -88,7 +78,7 @@ class LintCommand extends BaseCommand {
           final commit = ConventionalCommit.tryParse(commitMessage);
 
           if (commit != null) {
-            final issues = rules.map((rule) => rule.check(commit));
+            final issues = rules.map((rule) => rule.checkCommit(commit));
 
             return CommitIssue('details', issues);
           }
