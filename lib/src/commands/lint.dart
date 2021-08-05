@@ -73,11 +73,10 @@ class LintCommand extends BaseCommand {
 
     final commitIssues = commitMessages
         .map((commitMessage) {
-          print(commitMessage);
-
           final commit = ConventionalCommit.tryParse(commitMessage);
 
-          if (commit != null) {
+          if (commit != null &&
+              !(commit.isMergeCommit && configModel.ignoreMergeCommits)) {
             final issues = rules.map((rule) => rule.checkCommit(commit));
 
             return CommitIssue('details', issues);
