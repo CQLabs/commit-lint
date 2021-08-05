@@ -1,0 +1,26 @@
+ignore-merge-commits: true
+
+lint:
+  type-presence:
+    presence: required
+  type-case:
+    case: lower-case
+  type-enum:
+    allowed:
+      - build
+      - chore
+      - feat
+      - fix
+      - docs
+      - refactor
+      - perf
+      - style
+      - test
+  
+  scope-presence:
+    presence: optional
+  scope-case:
+    case: lower-case
+  
+  subject-case:
+    case: lower-case
